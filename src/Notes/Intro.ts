@@ -9,5 +9,8 @@
     - it follow the oops principles
         - it is a complied language
             - throws errors at compiled time
+            
+// Installation process //
+
 
 
