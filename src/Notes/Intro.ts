@@ -12,5 +12,11 @@
             
 // Installation process //
 
+1) Install NodeJs
+2) Install Angular CLI - npm i -g @angular/cli
+3) Creating angular application - ng new app_name --> cd app_name --> ngserve
+
+
+
 
 
