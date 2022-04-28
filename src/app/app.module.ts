@@ -8,7 +8,7 @@ import { DirectiveComponent } from './directive/directive.component';
 @NgModule({
   declarations: [
     AppComponent,
-    DirectiveComponent
+    DirectiveComponent,
   ],
   imports: [
     BrowserModule,
