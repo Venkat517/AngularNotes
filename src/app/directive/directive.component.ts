@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DirectiveComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    let itemFlag: boolean = false;
+
+  }
+
 
   ngOnInit(): void {
+  }
+
+  displayItems() {
+    alert('Mouse Clicked on the button');
   }
 
 }
