@@ -18,3 +18,24 @@
     </div>
     <button (click)="displayItems()" class="btn btn-primary">Click Here</button>
 </div>
+
+<div then #courses else #nocourses></div>
+<ng-template #courses>
+    No of courses availiable
+</ng-template>
+
+<ng-template #nocourses>
+    No courses are availiable
+</ng-template>
+
+<!-- Using hidden via property binding -->
+
+<!-- here if the expr is true then its is not removed from DOM, where if we use ngIf then it is removed from DOM -->
+
+<div [hidden]="">
+    List of courses
+</div>
+
+<div [hidden]="">
+    No courses yet
+</div>

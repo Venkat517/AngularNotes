@@ -14,6 +14,7 @@ export class DirectiveComponent implements OnInit {
 
 
   ngOnInit(): void {
+    let courses = [2, 4];
   }
 
   displayItems() {
