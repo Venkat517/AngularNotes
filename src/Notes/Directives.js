@@ -22,7 +22,43 @@
             - eg ngClass, ngStyle
 
 NgSwitch -
-    it actually comprised of two directives, one is structural directive and another is attriburte directive.
+    it actually comprised of two directives, one is structural directive and another is attriburte directive,
+    
+NgFor- Example
 
+<ul>
+  <li *ngFor="let course of courses">
+    {{ course.name}}
+  </li>
+</ul>
 
+<!-- To get the exported values such as index lets do it as below -->
+<!-- To find the all exported values visit the link below -->
+<!-- visit angular.io and search for NgForOF -->
 
+<ul>
+  <li *ngFor="let course of courses; index as i">
+    {{i}} - {{ course.name}}
+  </li>
+</ul>
+
+<!-- To display a style or something for even rows -->
+
+<ul>
+  <li *ngFor="let course of courses; even as isEven">
+    {{ course.name}}
+    <span *ngIf="isEven">(it's Even Row)- Styles needs to be added</span>
+  </li>
+</ul>
+
+<hr>
+
+<h3 style="text-align:center">Ng For Directive in change detection</h3>
+
+<button (click)="onAdd()">Add</button>
+<ul>
+  <li *ngFor="let subject of subjects;">
+    {{ subject.name}}
+    <button (click)="onRemove(subject)">Remove</button>
+  </li>
+</ul>
