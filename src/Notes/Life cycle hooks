@@ -6,4 +6,5 @@ Life cycle hooks will take place when it detects the following changes in the co
     Create and render its children
     Destroys a component
     
+ NgOninit- It will call when component is initialised
  
