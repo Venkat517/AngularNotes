@@ -1,1 +1,9 @@
-
+Life cycle hooks will take place when it detects the following changes in the component
+  
+  When Angular
+    Creates a Component
+    Renders it
+    Create and render its children
+    Destroys a component
+    
+ 
