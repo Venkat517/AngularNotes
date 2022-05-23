@@ -48,6 +48,24 @@ for getting the change detection in the form object
 
  <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">First Name is Required</div>
 
+3)Adding specific validations errors
+
+- Minlength
+- Maxlength
+- required
+- Pattern
+
+<div class="form-group">
+     <label for="firstName">First Name</label>
+     <input required minlength="4" ngModel name="firstName" #firstName="ngModel" id="firstName" (change)="log(firstName)" type="text" class="form-control">
+     <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+         <div *ngIf="firstName.errors">First Name is Required</div>
+         <div *ngIf="firstName.errors?.['minLength']">First Name Should Be Min 3 Characters</div>
+     </div>
+ </div>
+
+
+
 
 
 
