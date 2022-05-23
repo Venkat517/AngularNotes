@@ -64,6 +64,13 @@ for getting the change detection in the form object
      </div>
  </div>
 
+//required length can be seen in the object related to ngModel
+<div *ngIf="firstName.errors?.['minlength']">First Name Should Be Min {{firstName.errors?.['minlength'].requiredlength}} Characters</div>
+
+4) Styling invalid input fields
+
+
+
 
 
 
