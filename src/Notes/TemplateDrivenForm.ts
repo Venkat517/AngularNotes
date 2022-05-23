@@ -42,6 +42,14 @@ for getting the change detection in the form object
   
 2) Adding the validation to the exitsting form
 
+- required keyword is mandatory for basic validation
+- add a div with class alert alert-danger for displaying the error
+- ngIf condition for checking the foucus (i.e touched or not) && valid state based on the reference varaiable for ngModel 
+
+ <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">First Name is Required</div>
+
+
+
 
 
 
