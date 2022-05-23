@@ -24,6 +24,23 @@ we need to create a FORM GROUP object to the form and FORM CONTROL object for th
 1) Directives (Template Driven): Angular will create these implicitilly under the hood
 2) Code (Reactive): Explicitly creating the control objects.
 
+Template-Driven 
+- Used to create the simple form
+- Simple Validation
+
+Reactive-Forms
+- Good for complex forms
+- Unit testable
+- More control over validation logic
+
+// Validation using template driven approach
+
+1) Instanciate the form obj
+for getting the change detection in the form object
+
+<input ngModel name="firstName" #firstName="ngModel" id="firstName" (change)="log(firstName)" type="text" class="form-control">
+  
+2) Adding the validation to the exitsting form
 
 
 
