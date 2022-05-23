@@ -68,6 +68,12 @@ for getting the change detection in the form object
 <div *ngIf="firstName.errors?.['minlength']">First Name Should Be Min {{firstName.errors?.['minlength'].requiredlength}} Characters</div>
 
 4) Styling invalid input fields
+- Identify the input classes and apply the style accordingly
+
+.form-control.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
 
 
 
