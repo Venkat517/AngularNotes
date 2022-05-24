@@ -99,6 +99,16 @@ ngForm(directive)
 
 <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
 
+// Working with checkboxes
+
+ <div class="checkbox">
+     <label>
+         <input type="checkbox" ngModel name="isSubscribed">Subscribe to newsmail notifications
+     </label>
+ </div>
+        
+<p>{{f.value | json }}</p>
+
 
 
 
