@@ -18,6 +18,8 @@
 // Types of forms //
 
 we need to create a FORM GROUP object to the form and FORM CONTROL object for the each input field in the form
+FormGroup - represents the group of Form controls
+
 
 // Two ways to create the control objects //
 
@@ -73,6 +75,31 @@ for getting the change detection in the form object
 .form-control.ng-invalid.ng-touched {
     border: 1px solid red;
 }
+
+ngForm(directive) 
+- It is directly applied to the form tag
+- Create a Template variable reference
+<form #f="ngForm">
+
+// Control classes and directives
+  
+- In angular we have two classes, i.e FormControl & FormGroup
+- To keep track of the state of the input field and thier validity
+- FormControl represents only one input fields
+- FormGroup represents group of input fields
+- When we apply ngModel directive on the input fields, angular automatically creates a Formcontrol object 
+- When we have a complex form we apply ngModelGroup, it is similar to ngForm and creates Formobject in that form.
+
+// diff b/w ngForm and ngModel group
+
+- It exposes output property ngSubmit, which is used to handle to submit events of the forms
+- ngModelGroup doesn't have that output property.
+
+// Disabling the submit button
+
+<button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+
+
 
 
 
