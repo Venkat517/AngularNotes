@@ -109,6 +109,21 @@ ngForm(directive)
         
 <p>{{f.value | json }}</p>
 
+// working with drop down
+
+ <div class="form-group">
+     <label for="contactMethod">Contact Method</label>
+     <select ngModel name="contactMethod" id="contactMethod" class="form-control">
+        <option value=""></option>
+        <option *ngFor="let method of contactMethods" [value]="method.id">{{ method.name }}</option>
+     </select>
+ </div>
+
+**** if u want send the whole object then use [ngValue]="method"
+
+
+
+
 
 
 
