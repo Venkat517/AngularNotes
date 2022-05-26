@@ -120,6 +120,53 @@ ngForm(directive)
  </div>
 
 **** if u want send the whole object then use [ngValue]="method"
+**** if u want to select the multiple otions then use multiple keyword in select tag
+
+// sample prj with input field, dropdown and checkbox
+
+<div class="custom-box">
+    <form #fm="ngForm" (ngSubmit)="submit1(fm)">
+        <!-- Input field for text box -->
+        <div class="form-group">
+            <label for="courseName">Course Name</label>
+            <input type="text" class="form-control" required name="courseName" ngModel #courseName="ngModel" minlength="5">
+            <!-- displaying error message -->
+            <div *ngIf="courseName.touched && courseName.invalid" class="alert alert-danger">
+                <div *ngIf="courseName.errors?.['required']">
+                    Course Name is Required
+                </div>
+                <div *ngIf="courseName.errors?.['minlength']">
+                    Course Name Should Be Min {{courseName.errors?.['minlength'].requiredLength}} Characters
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="categoryName">Category</label>
+            <select ngModel required name="categoryName" id="categoryName" class="form-control" (change)="logCategory(categoryName)">
+                <option value=""></option>
+                <option *ngFor="let category of categoryName" [value]="category.id ">{{ category.name }}</option>
+            </select>
+            <!-- displaying error messages -->
+            <div *ngIf="categoryName?.['touched'] && categoryName?.['invalid']" class="alert alert-danger">
+                Category Name is Required
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ngModel name="hasGuarantee" required>30-day-money-back-guarantee
+                </label>
+            </div>
+        </div>
+        <p>{{fm.value | json }}</p>
+        <button type="submit" class="btn btn-primary" [disabled]="!fm.valid">Submit</button>
+    </form>
+</div>
+
+
+
 
 
 
