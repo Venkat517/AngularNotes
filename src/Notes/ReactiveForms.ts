@@ -62,5 +62,24 @@ Step-4: Associating input fields with above form control objects
         }
       - Displaying the erro message based on the conditions
       
-        *ngIf="username?.touched && username?.invalid" 
+        *ngIf="username?.touched && username?.invalid"
+
+<div *ngIf="username?.touched && username?.invalid" class="alert alert-danger">
+     <div *ngIf="username?.errors?.['required']">
+           Username is Required
+     </div>
+     <div *ngIf="username?.errors?.['minlength']">
+           Username should be greater than {{ username?.errors?.['minlength'].requiredLength }} characters
+     </div>
+</div>
+
+  myForm = new FormGroup({
+    username: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3)
+    ]),
+    password: new FormControl('', Validators.required)
+  });
+
+
            
