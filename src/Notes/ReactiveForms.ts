@@ -41,3 +41,26 @@ Step-4: Associating input fields with above form control objects
         username: new FormControl(), // Key value pairs
         password: new FormControl()
       });
+    
+ Step-5:Adding Validations
+ 
+    - Import validators
+    import { Validators } from '@angular/forms';
+
+    - Add the validators 
+     username: new FormControl('', Validators.required),
+     password: new FormControl('', Validators.required)
+
+    - Displaying the error messages inthe template
+      <div class="alert alert-danger">
+          Username is Required
+      </div>
+      - Accesing the form objects in the template
+      
+        get username() {
+          return this.myForm.get('username');
+        }
+      - Displaying the erro message based on the conditions
+      
+        *ngIf="username?.touched && username?.invalid" 
+           
