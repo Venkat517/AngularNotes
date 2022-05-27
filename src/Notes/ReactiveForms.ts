@@ -81,5 +81,35 @@ Step-4: Associating input fields with above form control objects
     password: new FormControl('', Validators.required)
   });
 
+// Adding Custom Validations
+
+- Add a new file in the existing folder
+- Insert a import statement which includes the following
+    import { AbstractControl, ValidationErrors } from '@angular/forms'
+- create a class name UsernameValidators and export it
+    export class UsernameValidators {
+    }
+- Create a static function of type AbstractControl as follows 
+
+    export class UsernameValidators {
+    // Username should not contain any spaces
+    static cannoutContainSpaces(control: AbstractControl): ValidationErrors | any {
+        if ((control.value).indexOf(' ') != -1) {
+            return {
+                cannoutContainSpaces: true,
+            }
+            return null;
+        }
+    }
+}
+
+- Add the validator in the ts file
+    UsernameValidators.cannoutContainSpaces
+- Add a error message in the template as follows
+
+    <div *ngIf="username?.errors?.['cannoutContainSpaces']">
+         Username Cannout Contain Spaces
+    </div>
+     
 
            
