@@ -111,5 +111,65 @@ Step-4: Associating input fields with above form control objects
          Username Cannout Contain Spaces
     </div>
      
+// Custom Validator includes Async Operation (Non-blocking) where it checks the server for validation
+
+- For calling a server we deal with async operations here we might get delay without blocking
+- In JS, async operations are calling a server and timer functions (we use promises or observables to work with async operations)
+- Create a static method and change the signature of validator function to return a promise
+
+  // Username should be unique (Asynchronous Operations)
+    static shouldBeUnique(control: AbstractControl): Promise<ValidationErrors | any> {
+        // return a Promise object
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (control.value === 'Sandeep') {
+                    resolve({
+                        shouldBeUnique: true,
+                    })
+                } else {
+                    resolve(null);
+                }
+            }, 3000)
+        });
+    }
+ - Register in the form control object
+ - In the constructor of the form control class the 3rd parameter is async validatiors
+ 
+    UsernameValidators.shouldBeUnique
+
+ - Display the validation error in the template
+     <div *ngIf="username?.errors?.['shouldBeUnique']">
+           Username is already taken
+     </div>
+
+
+// Displaying the Loader icon while async operators
+
+  <div *ngIf="username?.pending">
+       Please Waite...! Checking for uniqueness
+  </div>
+
+// Adding the validations while submitting the form
+- Handle NgSubmit event in the form
+
+  <form [formGroup]="myForm" (ngSubmit)="login()">
+  
+  login() {
+    this.myForm.setErrors({
+      invalidLogin: true
+    });
+  }
+
+- displaying the template
+
+  <div *ngIf="myForm.errors" class="alert alert-danger">
+       The Username and Password is invalid
+  </div>
+
+
+
+  
+
+ 
 
            
