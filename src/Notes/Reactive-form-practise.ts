@@ -1,12 +1,17 @@
 <h3 class="title">Reactive forms exercise module</h3>
 
 <div class="login-box">
-    <form [formGroup]="myForm">
+    <form [formGroup]="myForm" (ngSubmit)="loginUser()">
         <div class="form-group">
             <label for="oldpassword">Old Password</label>
             <input type="password" id="oldpassword" formControlName="oldpassword" placeholder="Enter your old password" class="form-control">
             <div *ngIf="oldpassword?.touched && oldpassword?.invalid" class="alert alert-danger">
-                Old password required
+                <div *ngIf="oldpassword?.errors?.['required']">
+                    0ld Password required
+                </div>
+                <div *ngIf="oldpassword?.errors?.['invalidOldPassword']">
+                    Old Password is not valid
+                </div>
             </div>
         </div>
 
