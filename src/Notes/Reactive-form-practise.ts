@@ -35,19 +35,28 @@
 <!-- Ts File -->
           
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { UsernameValidators } from '../../../../miniprj1/src/app/signup-form/username.validators';
+import { PasswordValidators } from '../reactive-form/password.validators'
 @Component({
   selector: 'app-reactive-form',
   templateUrl: './reactive-form.component.html',
   styleUrls: ['./reactive-form.component.css']
 })
 export class ReactiveFormComponent implements OnInit {
-  myForm = new FormGroup({
-    oldpassword: new FormControl('', Validators.required),
-    newpassword: new FormControl('', Validators.required),
-    cnfrmpassword: new FormControl('', Validators.required)
-  });
+
+  myForm: FormGroup;
+
+  constructor(fb: FormBuilder) {
+    this.myForm = fb.group({
+      oldpassword: new FormControl('', [
+        Validators.required,
+        PasswordValidators.validOldPassword
+      ]),
+      newpassword: new FormControl('', Validators.required),
+      cnfrmpassword: new FormControl('', Validators.required)
+    });
+  }
 
   get oldpassword() {
     return this.myForm.get('oldpassword');
@@ -61,8 +70,10 @@ export class ReactiveFormComponent implements OnInit {
     return this.myForm.get('cnfrmpassword');
   }
 
+  loginUser() {
+    console.log(this.myForm.value);
+  }
 
-  constructor() { }
 
   ngOnInit(): void {
   }
