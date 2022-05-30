@@ -63,7 +63,7 @@ export class ReactiveFormComponent implements OnInit {
     });
   }
 
-  get oldpassword() {
+  get oldpassword() {                            // getter for getting instace of form control obj used to display the error msgs in template
     return this.myForm.get('oldpassword');
   }
 
