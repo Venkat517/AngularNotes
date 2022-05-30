@@ -53,8 +53,8 @@ export class ReactiveFormComponent implements OnInit {
   myForm: FormGroup;
 
   constructor(fb: FormBuilder) {
-    this.myForm = fb.group({
-      oldpassword: new FormControl('', [
+    this.myForm = fb.group({      // myForm name should be matched with FormGroup name in <form> tag
+      oldpassword: new FormControl('', [              // Oldpassword name should be matched with formControlName
         Validators.required,
         PasswordValidators.validOldPassword
       ]),
