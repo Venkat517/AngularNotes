@@ -12,3 +12,17 @@ This is achieved with the help of lifecycle hooks. Here's the list of them -
 7)ngAfterViewChecked() - Respond after Angular checks the component's views and child views.
 8)ngOnDestroy - Cleanup just before Angular destroys the directive/component.
 
+// What are Promises and Observables in angular
+
+While both the concepts deal with Asynchronous events in Angular, Promises handle one such event at a time while observables handle a sequence of events
+over some time. 
+
+Promises - They emit a single value at a time. They execute immediately after creation and are not cancellable. 
+           They are Push errors to the child promises. 
+
+Observables - They are only executed when subscribed to them using the subscribe() method. They emit multiple values over a period of time. 
+              They help perform operations like forEach, filter, and retry, among others. They deliver errors to the subscribers. 
+              When the unsubscribe() method is called, the listener stops receiving further values.
+  
+// 
+
