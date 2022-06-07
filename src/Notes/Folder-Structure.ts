@@ -1,3 +1,4 @@
+// Folder Scaffolding
 -app
   -shared
     -components
