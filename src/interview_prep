@@ -1,0 +1,347 @@
+1) What is Angular
+Angular is a javascript binding framework which binds html(view) and javascript(model),
+Also it helps to build SPA's using the concept of routing,DI, HTTP and Input/Output. It builds on MVVM pattern.
+
+2) What is a directive?
+Directives are angular syntaxes inside the html which will helps to attach/change the behavior of HTML DOM.
+
+3) how many directives are there?
+There are 3 types of directives, they are (S A C)
+  - Structural directives
+    Change the structure of a HTML DOM elements by adding or removing the elements.
+    eg: *ngFor="let ele of elements" {{ele}}
+        *ngIf="let ele of elements" {{ele}}
+
+  - Attribute directives
+    Change the appearance and behavior of a HTML elements without adding or removing the DOM elements.
+    eg: <div [hidden]="Hide()">
+    ngClass, ngStyle
+
+  - Component directives
+    A custom directive(user control)
+
+3) Components are the basic building blocks for angular we can declare by using @component
+
+3) diff between the components and the directives
+directives
+- Adds behavior to existing DOM elements.
+- Do not uses views
+- Many directives can be used
+Components
+- Creates view with attached behavior
+- Single component can be present per DOM elements
+- Templates are mandatory.
+
+4) What is npm and node_modules folder in the angular.js folder?
+Npm is a package manager where makes intallation of any javascript, node_modules is the folder where all the packages where installed.
+
+5) What is package.Json file?
+It has all the javascript references which is required to run the project.
+
+6) What is typescript and why do we need it?
+It is a superset of javascript and it adds types to javascript, It also gives oops environment and later compiles to Js
+and it is strongly typed language so that we can catch errors at compile time.
+
+7) What is Angular CLI and why do we need this?
+Helps to create a readymade angular project when u can work on for the project
+ng new myApp
+
+8) What is the importance of component and module in the angular?
+  Component - where it binds the view(UI) and model(JS)
+  module - where its groups multiple components and connects logically.
+
+9) What is a decorater?
+it defines what kind of angular class it is? for eg if its a @Component then its a angular component and if it is a @NGModule then its a module.
+eg: @NgModule, @component, @Directives @Injectable.
+
+10) What are annotations or Metadata?
+same a Q9
+
+11) What is a template?
+Template is an HTML view where we write the directives and there are 2 ways to define 1)Inline and 2)External.
+
+12) What are different types of data binding in angular?
+It defines as how data is communicated betweent the view and the component
+There are four types of data binding, they are
+  (i) Interpolation/Expression : Data flows from component to view and that is embedded in html tags using {{ }}
+  (ii) Property binding: Data flows froms component to view and represents using []
+  (iii) event binding: Data flows from view to component and represents using ()
+  (iv) Two way binding: Data flows from view to component and component to view and represents using [()]
+
+13) Explain the Angular Architecture ?
+  (1) Template: HTML view of an angular
+  (2) Component: Binds the view and model
+  (3) Modules: Groups the components
+  (4) Bindings: define how data is communicated between components and view
+  (5) Directives: changes the HTML DOM behaviour
+  (6) Services: helps to share the common logic across the project
+  (7) DI: helps to inject the instance across the construtor.
+
+14) What is SPA in angular?
+  It loads only the single web document and then updates the contents as per user demand.
+
+15) How to implement the single page application in the angular?
+    This can be acheived by using the concept called routing. Now Routing is used to navigate from one page to another.
+  It consits of 2 things, one is URL and 2nd is when this URL is called which component should be loaded.
+
+16) How to implement Routing?
+  (1) define the routing collection where we define which component should be load for particular route
+  (2) we need to have the <router-outlet> where excatly our page should load.
+  (3) we have to define the routerlink in the html  <a [routerlink]> = "['home']"> Home </a>
+
+16) What is Authgaurd?
+it is used to protect the routes from unauthorized access in angular
+it can be acheived by help of canActive function (if its yes then access the routes)
+
+17) What exactly is lazy loading?
+ it is called as on demand loading which is essential like HTML, CSS and JS. Thus we can acheive better performance.
+ Angular 8 comes up with support for dynamic imports in our router configuration.
+ This means that we use the import statement for lazy loading the module and this will be understood by the IDEs, webpack, etc.
+
+ eg {path: ‘user’, loadChildren: () => import(‘./users/user.module’).then(m => m.UserModule)};
+
+18) How to implement Lazy loading in angular?
+(1) divide the project into separete modules
+(2) use the load children in the routes collection of that particular modules.
+
+19) What are services?
+  use to share the common functionality across the project. @injectable decorater.
+
+20) What is dependency injection?
+  DI is a design pattern, where rather than creating the object instance with the component, Angular will inject via constructor.
+
+21) How do we implement dependency injection?
+  (1) In the module, inside NgModule decorater, we have providers collection where we provide for particular class what instance should be injected
+
+  providers: [
+    {provide: Baselogger, useClass: HttpLogger},
+  ]
+
+ // in component
+  constructor(public bl: Baselogger){
+    this.bl.log();
+  }
+
+22) What is benefit of using dependency injection?
+  helps to decouple the class dependencies, so that when we need to add new dependencies we dont have to change every where else.
+
+23) what is the difference between ngserve and ngbuild?
+  ngserve build the angular application inside the RAM where as ngbuild builds inside the harddisk, for productions we use ngbuild.
+
+24) Explain --prod parameter in ng build?
+it will make ready for productions where it removes all unnecessary things and tries to make most compress code.
+
+// Advanced topic //
+
+25) Explain View child and view childeren?
+View child helps to reference view object to the component and that view object can be component, directive or simple html ele.
+where as View children helps to reference the collection of view objects to the component.
+
+eg - consider the view below as
+
+case i - <div #div1> This is a div1> </div>
+case ii - <comp2>
+            <p> this is p1 </p>
+            <p1 class="s1"> this is p1 with class s1 </p>
+            <p2 class="s2"> this is p2 with class s2 </p>
+          </comp2>
+case iii - <comp2>
+            <p> this is p2 </p>
+          </comp2>
+
+eg - consider the template below as
+
+export class comp2 {
+  @viewchild('div1', {static:false}) divref : ElementRef
+
+  @viewchild(comp2, {static:false}) tref1: comp2
+
+  @viewchildren(comp2) myComponents: QueryList<comp2>
+
+}
+
+in case i, temp ref variable #div1 is referenced by viewchild (single view object)
+
+in case ii, comp2 is refereced by viewchild (single view object)
+
+in case iii, comp2 collection is referenced by viewchildren (collection view object).
+
+26) Why do we need Template reference variable?
+  Template reference variable helps to refers the htmlDOM element, a component, directive ..etc
+
+eg: case i - we will refer by using # and name of variable. now we can use in the same view as
+
+  {{ div1.textcontent}}
+
+27) What is content Projection?
+  It is the scenario where we want to project the content from parent component to the child component.
+we will specify in <ng-content> </ng-content>.
+
+28) What is content Projection slot?
+  if we have the multiple content projection in the child component, we need to project specific content to specific slot.
+eg: <ng-content>
+    <ng-content>
+
+    <ng-content select="slot1">
+    <ng-content>
+
+    <ng-content select="slot2">
+    <ng-content>
+
+29) Angular Component Life Cycle?
+  Angular components hooks are ready made events which is provided by the angular, where user can tap in and can write custom code.
+
+30) Explain the seqence of Angular component life cylc?
+  Complete Angular events can be divided into 2 parts,
+  1)The seqence of events which occur when the component loaded first time.
+  2)The second seqence of events occurs when it fires on every change detection.
+
+1st event fires was - Constructor ()
+every component has 8 lifecycle hooks..
+
+why we need life cycle hooks?
+some data might be changed while we do some op in component, we want some data to be loaded while component is created, if component
+is changed then other components should get the latest information.
+
+- Hooks for components/directives
+- Hooks for the component children
+
+1)ngonchange -- it invokes when it detects the changes in i/p property(change in data which is bounded to i/p property)
+
+2)ngoninit --
+it is called only once
+it is used to initialize the data
+added to every component by default
+it is called when the data bounded property are displayed on screen
+
+3)ngdocheck (also called as developers custom change detective) --
+it involked when the angular change detection runs
+it is used to monitor the changes where ngonchange doesnt catch up, we need to use it explicitly.
+
+4)ngaftercontentinit --
+it is only called once after ngdocheck
+it runs through initialize of content
+
+5)ngaftercontentchecked --
+called after every ngdocheck
+waits till ngaftercontentinit runs first
+
+6)ngafterviewinit --
+after angular initialize the components,views, child components,projected contents this will fires
+calls only once after ngaftercontentchecked.
+
+7)ngafterviewchecked --
+first call after ngafterviewinit
+called aftter every ngaftercontentchecked
+
+8)ngdestroy --
+used to cleanup uncess data when component is removed from dom.
+used to unsubscribe things like Services
+called only once just before component removed from dom
+
+31) How to make HTTP calls using angular?
+1) we neeed to import the HTTPClient from the @angular/commom/http.
+2) create a http object for the httpclient via dependency injection the constructor.
+3) with the created obj we can make http get/post/update/delete calls.
+4) using subscribe function to catch success and error repsonse
+
+32) how to communicate between the components?
+senerio - 1
+  to communicate between the parent and child we use @input and
+  to communicate between the child and parent we use @output.
+  also we can use viewchild and event emitters.
+senerio - 2
+  while navigating from one component to another by using routing, we can use queryparams
+seneria - 3 (sharing data raather than passing data)
+  by using angular services
+  .
+
+33) What is a pipe?
+pipe is used to transform the data from one format to another,they are 2 kinds of pipes 1) inbuilt pipes and 2) custom pipes
+
+inbuild pipes
+Async pipe: used to read the obj from async source
+Json pipe: converts obj in to Json
+title,upper,lower,slice, Date, decimal
+
+34) What is subscribing?
+we need to subscribe to an observable to use the data that flows through that observable.
+This data is generated from a publisher and is consumed by a subscriber and we pass in a function for the data and another function for errors so that,
+in case there is some error.
+
+35) What is change detection?
+- The basic mechanism of the change detection is to perform checks against two states,
+one is the current state, the other is the new state.
+- Change Detection means updating the view (DOM) when the data has changed.
+
+36)What are functions provided by Rxjs
+The RxJS library also provides below utility functions for creating and working with observables.
+
+- Converting existing code for async operations into observables
+- Iterating through the values in a stream.
+- Mapping values to different types.
+- Filtering streams.
+- Composing multiple streams.
+
+37) What is AOT?
+The Angular Ahead-of-Time compiler pre-compiles application components and their templates during the build process.
+Apps compiled with AOT launch faster for several reasons.
+
+- Application components execute immediately, without client-side compilation.
+- Templates are embedded as code within their components so there is no client-side request for template files.
+- You don't download the Angular compiler, which is pretty big on its own.
+- The compiler discards unused Angular directives that a tree-shaking tool can then exclude.
+
+38) Why should ngOnInit be used, if we already have a constructor?
+- The Constructor is a default method of the class that is executed when the class is instantiated and ensures proper
+  initialization of fields in the class and its subclasses.
+
+- ngOnInit is a life cycle hook called by Angular2 to indicate that Angular is done creating the component.
+  Mostly we use ngOnInit for all the initialization/declaration and avoid stuff to work in the constructor.
+
+39) Why does incremental DOM have a low memory footprint in Angular 8?
+Every time we re-render, Virtual DOM creates a tree from scratch. But incremental DOM requires no memory to re-render
+the view as long as the DOM isn’t changed, and the memory has to be allocated only when the DOM nodes are added or deleted.
+
+40) What is Redux in the context of Angular 8?
+Redux is a way to manage the application state and improve the maintainability of asynchronicity in our application.
+
+41) What is Ivy and Bazel?
+Ivy is the new compilation and rendering pipeline engine that is used from the Angular version 8.
+You can create a new project with Ivy enabled engine or use the Ivy engine in your existing project.
+
+Bazel is the new tool available in the Angular version 8 that allows you to break an application into distinct build units at the NgModule level.
+With this, you can rebuild the part of the code that is changed instead of rebuilding the entire application.
+
+43) What is Angular Universe?
+It is defined as the process of SSR(server-side rendering) in which HTML present on the server.
+Basically, Angular application are single page applications so the rendering occur on the browser.
+
+44) What is tree shakable in angular?
+The tree shaking mechanism refers to the process of removing unused code and including only the code that is needed for the application to run.
+to increase the performance.
+
+45) What is host listener and hostbinding in angular?
+HostListener in Angular is a function decorator. It accepts an event name as the argument and calls the associated function
+when the event gets fired on the host element.
+
+//example
+@HostListener('mouseover') onHover() {
+  window.alert("hover");
+}
+Here, when you hover the mouse on the host element, an alert popup will be triggered.
+
+HostBinding is used to bind the input properties in the host element to the directive.
+With the HostBinding decorator, a directive can link internal property to the input property of the host element.
+When the internal property is changed, the input property of the host element will change too.
+
+46) Steps to detect route change in angular?
+- Import Router, Event, NavigationStart, NavigationEnd, NavigationError from ‘@angular/router’.
+- And inject router in the constructor.
+- Subscribe to the NavigationStart, NavigationEnd, NavigationError events of the router.
+- Detect the change in URL route in NavigationStart’s subscribe method.
+
+
+
+
+
